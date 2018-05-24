@@ -1,23 +1,47 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <nav>
+      <ul class="nav">
+        <li>
+          <router-link to="/">Home</router-link>
+        </li>
+        <li>
+          <router-link :to="postsLink">Posts</router-link>
+        </li>
+      </ul>
+    </nav>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
-}
+  name: "App",
+
+  data: () => ({
+    postsLink: "/posts"
+  })
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  list-style-type: none;
+}
+
+li {
+  margin: 10px;
 }
 </style>
