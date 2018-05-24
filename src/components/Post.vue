@@ -1,7 +1,9 @@
 <template>
-  <div v-if="post">
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.body }}</p>
+  <div>
+    <div v-if="post">
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.body }}</p>
+    </div>
   </div>
 </template>
 
