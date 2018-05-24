@@ -3,7 +3,7 @@
     <nav>
       <ul class="nav">
         <li>
-          <router-link to="/">Home</router-link>
+          <router-link to="/" exact>Home</router-link>
         </li>
         <li>
           <router-link :to="postsLink">Posts</router-link>
@@ -44,5 +44,17 @@ export default {
 
 li {
   margin: 10px;
+}
+
+a {
+  color: #42b983;
+}
+
+.router-link-active {
+  font-weight: 700;
+}
+
+.router-link-exact-active {
+  color: #f012be;
 }
 </style>

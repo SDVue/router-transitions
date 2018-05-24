@@ -7,6 +7,8 @@
 
 <script>
 export default {
+  props: ["id"],
+
   data() {
     return {
       post: null
@@ -16,7 +18,7 @@ export default {
   async created() {
     try {
       this.post = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`
+        `https://jsonplaceholder.typicode.com/posts/${this.id}`
       ).then(res => res.json());
     } catch (err) {
       console.error(err.message);
