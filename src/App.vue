@@ -38,6 +38,7 @@ export default {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+  padding-left: 0;
   list-style-type: none;
 }
 
