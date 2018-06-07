@@ -49,13 +49,11 @@ export default {
     }
   },
 
-  created() {
-    console.log(this.$route);
-    this.getData();
-  },
-
   watch: {
-    id: "getData"
+    id: {
+      handler: "getData",
+      immediate: true
+    }
   }
 };
 </script>
