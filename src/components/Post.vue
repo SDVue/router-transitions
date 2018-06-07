@@ -25,7 +25,7 @@ export default {
         name: "Post",
         params: { id: +this.id - 1 }
       };
-      return prev.params.id > 1 ? prev : false;
+      return prev.params.id > 0 ? prev : false;
     },
 
     next() {
@@ -37,15 +37,25 @@ export default {
     }
   },
 
-  async created() {
-    console.log(this.$route);
-    try {
-      this.post = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${this.id}`
-      ).then(res => res.json());
-    } catch (err) {
-      console.error(err.message);
+  methods: {
+    async getData() {
+      try {
+        this.post = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${this.id}`
+        ).then(res => res.json());
+      } catch (err) {
+        console.error(err.message);
+      }
     }
+  },
+
+  created() {
+    console.log(this.$route);
+    this.getData();
+  },
+
+  watch: {
+    id: "getData"
   }
 };
 </script>
