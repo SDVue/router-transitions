@@ -37,22 +37,14 @@ export default {
     }
   },
 
-  methods: {
-    async getData() {
-      try {
-        this.post = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/${this.id}`
-        ).then(res => res.json());
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
-  },
-
-  watch: {
-    id: {
-      handler: "getData",
-      immediate: true
+  async created() {
+    console.log(this.$route);
+    try {
+      this.post = await fetch(
+        `https://jsonplaceholder.typicode.com/posts/${this.id}`
+      ).then(res => res.json());
+    } catch (err) {
+      console.error(err.message);
     }
   }
 };
