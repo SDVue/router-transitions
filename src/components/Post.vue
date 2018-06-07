@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <div v-if="post">
-      <h1>{{ post.title }}</h1>
-      <p>{{ post.body }}</p>
+  <div v-if="post">
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.body }}</p>
+    <div class="prev-next">
+      <router-link v-if="prev" :to="prev">Prev</router-link>
+      <router-link v-if="next" :to="next">Next</router-link>
     </div>
   </div>
 </template>
@@ -17,7 +19,26 @@ export default {
     };
   },
 
+  computed: {
+    prev() {
+      let prev = {
+        name: "Post",
+        params: { id: +this.id - 1 }
+      };
+      return prev.params.id > 1 ? prev : false;
+    },
+
+    next() {
+      let next = {
+        name: "Post",
+        params: { id: +this.id + 1 }
+      };
+      return next.params.id < 10 ? next : false;
+    }
+  },
+
   async created() {
+    console.log(this.$route);
     try {
       this.post = await fetch(
         `https://jsonplaceholder.typicode.com/posts/${this.id}`
@@ -30,4 +51,10 @@ export default {
 </script>
 
 <style>
+.prev-next {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  grid-column-gap: 50px;
+}
 </style>
